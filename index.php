@@ -4,13 +4,19 @@
 <body>
 
     <?php
-        require_once('header.php');
-        $query="SELECT * FROM appointments";
-        $statement=$conn->prepare($query);
-        $statement->execute();
-        $appointments=$statement->fetchAll(PDO::FETCH_ASSOC);
+    require_once('header.php');
+    $query = "SELECT appointments.*, users.firstName, users.lastName, services.name 
+          FROM appointments
+          INNER JOIN users ON appointments.userId = users.Id
+          INNER JOIN services ON appointments.serviceId = services.Id";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
-  
+
+
+
+
     <div class="container-lg">
         <div class="table-responsive">
             <div class="table-wrapper">
@@ -20,7 +26,9 @@
                             <h2>Afspraken <b></b></h2>
                         </div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                            <button><a href="Create.php" class="btn btn-info add-new">
+                                Maak nieuw afspraak
+                            </a></button>
                         </div>
                     </div>
                 </div>
@@ -28,6 +36,7 @@
                     <thead>
                         <tr>
                             <td>Voornaam</td>
+                            <td>Achternaam</td>
                             <td>Dienst</td>
                             <td>Datum</td>
                             <td>Acties</td>
@@ -37,7 +46,8 @@
                         <?php foreach ($appointments as $appointment) : ?>
                             <tr>
                                 <td><?php echo $appointment['firstName'] ?></td>
-                                <td><?php echo $appointment['service'] ?></td>
+                                <td><?php echo $appointment['lastName'] ?></td>
+                                <td><?php echo $appointment['name'] ?></td>
                                 <td><?php echo $appointment['date'] ?></td>
                                 <td class="actions">
                                     <a href="update.php?id=<?= $contact['id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
