@@ -57,12 +57,12 @@ include 'connect.php';
 
   <div class="form-group">
     <label for="datum">Datum</label>
-    <input type="date" class="form-control" id="datum" placeholder="Vul hier uw datum in" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
-   </div>
+    <input type="date" class="form-control" id="datum" placeholder="Vul hier uw datum in" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
+  </div>
 
   <div class="form-group">
     <label>Tijd</label>
-    <input type="time" class="form-control"  id="tijd" placeholder="Vul hier uw tijd in">
+    <input type="time" class="form-control" id="tijd" placeholder="Vul hier uw tijd in">
     <p id="foutmelding" style="color: red;"></p>
   </div>
 
@@ -74,13 +74,13 @@ include 'connect.php';
       var uur = huidigeTijd.getHours();
       var minuten = huidigeTijd.getMinutes();
 
-      // Ingevoerde tijd ophalen uit het inputveld
+      // Ingevoerde datum en tijd ophalen uit de inputvelden
+      var ingevoerdeDatum = document.getElementById("datum").value;
       var ingevoerdeTijd = document.getElementById("tijd").value;
-      var ingevoerdUur = parseInt(ingevoerdeTijd.split(":")[0]);
-      var ingevoerdeMinuten = parseInt(ingevoerdeTijd.split(":")[1]);
+      var ingevoerdDatumTijd = new Date(ingevoerdeDatum + "T" + ingevoerdeTijd);
 
       // Tijd vergelijken
-      if (ingevoerdUur < uur || (ingevoerdUur === uur && ingevoerdeMinuten < minuten)) {
+      if (ingevoerdDatumTijd <= huidigeTijd) {
         document.getElementById("foutmelding").textContent = "Kies een tijd in de toekomst.";
         document.getElementById("tijd").value = ""; // Veld leegmaken
       } else {
