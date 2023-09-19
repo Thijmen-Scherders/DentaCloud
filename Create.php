@@ -2,7 +2,6 @@
 
 include 'connect.php';
 
-
 ?>
 
 
@@ -12,8 +11,10 @@ include 'connect.php';
 
 <body>
 
-    <div class="container">
-    <form methode ="post">
+
+
+<div class="container">
+<form methode ="post">
 
   <div class="form-group">
     <label>Voornaam</label>
@@ -61,14 +62,37 @@ include 'connect.php';
 
   <div class="form-group">
     <label>Tijd</label>
-    <input type="time" class="form-control" placeholder="Vul hier uw tijd in">
+    <input type="time" class="form-control"  id="tijd" placeholder="Vul hier uw tijd in">
+    <p id="foutmelding" style="color: red;"></p>
   </div>
+
+  <script>
+    // Eventlistener toevoegen aan het inputveld
+    document.getElementById("tijd").addEventListener("input", function() {
+      // Huidige tijd ophalen
+      var huidigeTijd = new Date();
+      var uur = huidigeTijd.getHours();
+      var minuten = huidigeTijd.getMinutes();
+
+      // Ingevoerde tijd ophalen uit het inputveld
+      var ingevoerdeTijd = document.getElementById("tijd").value;
+      var ingevoerdUur = parseInt(ingevoerdeTijd.split(":")[0]);
+      var ingevoerdeMinuten = parseInt(ingevoerdeTijd.split(":")[1]);
+
+      // Tijd vergelijken
+      if (ingevoerdUur < uur || (ingevoerdUur === uur && ingevoerdeMinuten < minuten)) {
+        document.getElementById("foutmelding").textContent = "Kies een tijd in de toekomst.";
+        document.getElementById("tijd").value = ""; // Veld leegmaken
+      } else {
+        document.getElementById("foutmelding").textContent = "";
+      }
+    });
+  </script>
 
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
     
-    </div>
     
 </body>
 </html>
