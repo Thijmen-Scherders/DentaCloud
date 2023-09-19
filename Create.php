@@ -1,6 +1,7 @@
 <?php
 
 include 'connect.php';
+include 'Action.php';
 
 ?>
 
@@ -36,9 +37,24 @@ include 'connect.php';
 
 
   <div class="form-group">
-    <label>Email address</label>
-    <input type="email" class="form-control" placeholder="Vul hier uw email in">
-  </div>
+  <label>Email address</label>
+  <input type="email" class="form-control" id="email" placeholder="Vul hier uw email in">
+  <p id="foutmelding" style="color: red;"></p>
+</div>
+
+<script>
+  // Eventlistener toevoegen aan het inputveld
+  document.getElementById("email").addEventListener("input", function() {
+    var emailInput = document.getElementById("email").value;
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (!emailRegex.test(emailInput)) {
+      document.getElementById("foutmelding").textContent = "Voer een geldig e-mailadres in.";
+    } else {
+      document.getElementById("foutmelding").textContent = "";
+    }
+  });
+</script>
 
 
 
@@ -66,7 +82,9 @@ include 'connect.php';
     <p id="foutmelding" style="color: red;"></p>
   </div>
 
-  <script>
+ 
+  
+<script>
     // Eventlistener toevoegen aan het inputveld
     document.getElementById("tijd").addEventListener("input", function() {
       // Huidige tijd ophalen
@@ -87,7 +105,8 @@ include 'connect.php';
         document.getElementById("foutmelding").textContent = "";
       }
     });
-  </script>
+
+</script>
 
 
   <button type="submit" class="btn btn-primary">Submit</button>
