@@ -1,12 +1,7 @@
 <?php
-
 include 'connect.php';
 include 'Action.php';
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,11 +25,6 @@ include 'Action.php';
   </div>
 
 
-  <div class="form-group">
-    <label>Telefoonummer</label>
-    <input type="text" class="form-control" placeholder="Vul hier uw telefoonummer in">
-  </div>
-
 
   <div class="form-group">
   <label>Email address</label>
@@ -42,20 +32,49 @@ include 'Action.php';
   <p id="foutmelding" style="color: red;"></p>
 </div>
 
+
+<div class="form-group">
+   <label>Telefoonnummer</label>
+   <input type="text" class="form-control" id="telefoon" placeholder="Vul hier uw telefoonnummer in">
+    <p id="foutmelding" style="color: red;"></p>
+</div>
+
+<script>
+  // Eventlistener toevoegen aan het inputveld
+  document.getElementById("telefoon").addEventListener("input", function() {
+    var telefoonInput = document.getElementById("telefoon").value;
+    var telefoonRegex = /^\d{10}$/; // Dit voorbeeld accepteert 10 cijfers, pas aan volgens jouw eisen
+    var foutmeldingElement = document.getElementById("foutmelding");
+
+    if (telefoonInput.trim() === "") {
+      // Telefoonnummerveld is leeg, dus de foutmelding verwijderen
+      foutmeldingElement.textContent = "";
+    } else if (!telefoonRegex.test(telefoonInput)) {
+      foutmeldingElement.textContent = "Voer een geldig telefoonnummer in (bijv. 0123456789).";
+    } else {
+      foutmeldingElement.textContent = "";
+    }
+  });
+</script>
+
+
 <script>
   // Eventlistener toevoegen aan het inputveld
   document.getElementById("email").addEventListener("input", function() {
     var emailInput = document.getElementById("email").value;
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    var foutmeldingElement = document.getElementById("foutmelding");
 
-    if (!emailRegex.test(emailInput)) {
-      document.getElementById("foutmelding").textContent = "Voer een geldig e-mailadres in.";
+    if (emailInput.trim() === "") {
+      // E-mailveld is leeg, dus de foutmelding verwijderen
+      foutmeldingElement.textContent = "";
+    } else if (!emailRegex.test(emailInput)) {
+      foutmeldingElement.textContent = "Voer een geldig e-mailadres in.";
     } else {
-      document.getElementById("foutmelding").textContent = "";
+      foutmeldingElement.textContent = "";
     }
   });
 </script>
-
 
 
   <div class="form-group">
