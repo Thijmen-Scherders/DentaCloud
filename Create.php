@@ -52,8 +52,8 @@
 
 
   <div class="form-group">
-    <label>Datum</label>
-    <input type="Date" class="form-control" placeholder="Vul hier uw datum in">
+    <label for="datum">Datum</label>
+    <input type="date" class="form-control" id="datum" placeholder="Vul hier uw datum in" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
   </div>
 
   <div class="form-group">
