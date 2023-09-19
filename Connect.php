@@ -4,17 +4,18 @@ $database = "dentacloud";
 $username = "root";
 $password = "";
 
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
 
+$conn->SetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($conn->connect_error) 
-
+if ($conn)
 {
-die("Connection failed: " . $conn->connect_error);
+    echo "succesfully connected";
 }
 
-echo "Connected successfully";
-
-mysqli_close($conn);
+else
+{
+    echo "Connection failed";
+}
 
 ?>
