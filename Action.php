@@ -15,6 +15,7 @@ if (isset($_POST['update'])) {
     $userId = $_POST["userId"];
 
 
+<<<<<<< Updated upstream
     $userQuery = "UPDATE users 
     SET email = :email, phoneNumber = :phoneNumber
     WHERE Id = :userId";
@@ -50,3 +51,8 @@ if (isset($_POST['update'])) {
 
     header("Location: index.php");
 }
+=======
+
+
+?>
+>>>>>>> Stashed changes
