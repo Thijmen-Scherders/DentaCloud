@@ -142,7 +142,7 @@ include 'connect.php';
 </script>
 
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" name="create" class="btn btn-primary">Submit</button>
 </form>
     
 
