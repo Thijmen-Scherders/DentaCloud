@@ -75,16 +75,24 @@ require_once('header.php');
                 });
             </script>
 
-            <div class="form-group">
-                <label>Diensten</label>
-                <select name="service" id="diensten" class="form-control">
-                    <?php foreach ($services as $service) : ?>
-                        <option value="<?php echo $appointment['serviceId']; ?>" <?php echo ($appointment['serviceId'] == $appointment['serviceId']) ? 'selected' : ''; ?>>
-                            <?php echo $service['name']; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <label>Diensten</label>
+            <select name="dienst" id="diensten">
+                <option value="">Maak uw keuze</option>
+                <?php
+                try {
+                    $query = "SELECT name FROM services ORDER BY NAME ASC LIMIT 0, 6";
+                    $result = $conn->query($query);
+
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        $selected = ($row['name'] == $name) ? 'selected' : '';
+                       
+                        echo "<option value='" . $row['name'] . "' $selected>" . $row['name'] . "</option>";
+                    }
+                } catch (PDOException $e) {
+                    die("Connection failed: " . $e->getMessage());
+                }
+                ?>
+            </select>
 
             <div class="form-group">
                 <label for="datum">Datum:</label>
@@ -94,7 +102,6 @@ require_once('header.php');
             <div class="form-group">
                 <label>Tijd</label>
                 <?php
-
                 $formattedTime = date('H:i', strtotime($appointment['time']));
                 ?>
                 <input type="text" class="form-control" name="time" id="tijd" value="<?php echo $formattedTime; ?>" placeholder="Vul hier uw tijd in">
