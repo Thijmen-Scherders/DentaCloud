@@ -53,7 +53,7 @@ if (isset($_POST['create'])) {
     echo "test";
     $email = $_POST["email"];
     $phoneNumber = $_POST["phonenumber"];
-    $service = $_POST["service"];
+    $service = $_POST["dienst"];
     $date = $_POST["date"];
     $time = $_POST["time"];
 
