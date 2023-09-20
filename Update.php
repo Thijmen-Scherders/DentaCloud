@@ -79,7 +79,7 @@ require_once('header.php');
 
             <div class="form-group">
                 <label>Diensten</label>
-                <select name="dienst" id="diensten">
+                <select name="service" id="diensten">
                     <option value="">Maak uw keuze</option>
                     <?php
                     try {
@@ -87,7 +87,7 @@ require_once('header.php');
                         $result = $conn->query($query);
 
                         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                            $selected = ($row['name'] == $appointment['serviceName']) ? 'selected' : '';
+                            $selected = ($row['name'] == $appointment['name']) ? 'selected' : '';
                             echo "<option value='" . $row['name'] . "' $selected>" . $row['name'] . "</option>";
                         }
                     } catch (PDOException $e) {
