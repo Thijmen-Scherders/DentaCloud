@@ -16,10 +16,12 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 require_once('header.php');
+
 ?>
 
 <body>
     <h1>Verander je afspraak</h1>
+    
 
     <?php foreach ($appointments as $appointment) : ?>
         <form method="post" action="action.php">
@@ -75,25 +77,25 @@ require_once('header.php');
                 });
             </script>
 
-            <label>Diensten</label>
-            <select name="dienst" id="diensten">
-                <option value="">Maak uw keuze</option>
-                <?php
-                try {
-                    $query = "SELECT name FROM services ORDER BY NAME ASC LIMIT 0, 6";
-                    $result = $conn->query($query);
+            <div class="form-group">
+                <label>Diensten</label>
+                <select name="dienst" id="diensten">
+                    <option value="">Maak uw keuze</option>
+                    <?php
+                    try {
+                        $query = "SELECT name FROM services ORDER BY name ASC LIMIT 0, 6";
+                        $result = $conn->query($query);
 
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        $selected = ($row['name'] == $name) ? 'selected' : '';
-                       
-                        echo "<option value='" . $row['name'] . "' $selected>" . $row['name'] . "</option>";
+                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            $selected = ($row['name'] == $appointment['serviceName']) ? 'selected' : '';
+                            echo "<option value='" . $row['name'] . "' $selected>" . $row['name'] . "</option>";
+                        }
+                    } catch (PDOException $e) {
+                        die("Connection failed: " . $e->getMessage());
                     }
-                } catch (PDOException $e) {
-                    die("Connection failed: " . $e->getMessage());
-                }
-                ?>
-            </select>
-
+                    ?>
+                </select>
+            </div>
             <div class="form-group">
                 <label for="datum">Datum:</label>
                 <input type="date" class="form-control" id="datum" name="date" value="<?php echo $appointment['date']; ?>" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
