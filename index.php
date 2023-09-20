@@ -50,8 +50,8 @@
                                 <td><?php echo $appointment['name'] ?></td>
                                 <td><?php echo $appointment['date'] ?></td>
                                 <td class="actions">
-                                    <a href="update.php?id=<?= $contact['id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                                    <a href="delete.php?id=<?= $contact['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <a href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
+                                    <a href="delete.php?id=<?= $appointment['Id'] ?>" >Verwijderen</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
