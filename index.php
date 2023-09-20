@@ -39,6 +39,7 @@
                             <td>Achternaam</td>
                             <td>Dienst</td>
                             <td>Datum</td>
+                            <td>Tijd</td>
                             <td>Acties</td>
                         </tr>
                     </thead>
@@ -49,6 +50,7 @@
                                 <td><?php echo $appointment['lastName'] ?></td>
                                 <td><?php echo $appointment['name'] ?></td>
                                 <td><?php echo $appointment['date'] ?></td>
+                                <td><?php echo $appointment['time'] ?></td>
                                 <td class="actions">
                                     <a href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
                                     <a href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>
