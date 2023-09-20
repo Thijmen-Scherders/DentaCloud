@@ -1,6 +1,6 @@
 <?php
 include 'connect.php';
-include 'Action.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@ include 'Action.php';
 
 
 <div class="container">
-<form methode ="post">
+<form method ="post" action="action.php">
 
   <div class="form-group">
     <label>Voornaam</label>
@@ -81,7 +81,7 @@ include 'Action.php';
     <label>Diensten</label>
     <select name="dienst" id="diensten">
         <option value="test"></option>
-        <option value="test2"></option>
+        <option value="testertet2"></option>
         <option value="test3"></option>
         <option value="test4"></option>
         <option value="test5"></option>
