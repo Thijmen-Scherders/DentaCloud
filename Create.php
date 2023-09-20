@@ -79,7 +79,7 @@ include 'connect.php';
 
 <div class="form-group">
     <label>Diensten</label>
-    <select name="dienst" id="diensten">
+    <select name="service" id="diensten">
     <option value="">Maak uw keuze</option>
     <?php
          try {
