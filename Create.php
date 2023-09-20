@@ -77,17 +77,24 @@ include 'connect.php';
 </script>
 
 
-  <div class="form-group">
+<div class="form-group">
     <label>Diensten</label>
     <select name="dienst" id="diensten">
-        <option value="test"></option>
-        <option value="testertet2"></option>
-        <option value="test3"></option>
-        <option value="test4"></option>
-        <option value="test5"></option>
+    <?php
+         try {
 
+          $query = "SELECT Name FROM services ORDER BY NAME DESC LIMIT 0, 6";
+          $result = $conn->query($query);
+
+          while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+              echo "<option value='" . $row['Name'] . "'>" . $row['Name'] . "</option>";
+          }
+      } catch (PDOException $e) {
+          die("Connection failed: " . $e->getMessage());
+      } 
+     ?>
     </select>
-  </div>
+</div>
 
 
   <div class="form-group">
