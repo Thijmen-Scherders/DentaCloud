@@ -83,7 +83,7 @@ include 'connect.php';
     <?php
          try {
 
-          $query = "SELECT Name FROM services ORDER BY NAME DESC LIMIT 0, 6";
+          $query = "SELECT Name FROM services ORDER BY NAME ASC LIMIT 0, 6";
           $result = $conn->query($query);
 
           while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
