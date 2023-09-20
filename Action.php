@@ -25,7 +25,6 @@ if (isset($_POST['update'])) {
         ":userId" => $userId
     ]);
 
-    print_r($serviceId);
 
     $serviceQuery = "UPDATE services
     SET name = :name
@@ -53,7 +52,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST['create'])) {
     echo "test";
     $email = $_POST["email"];
-    $phoneNumber = $_POST["phoneNumber"];
+    $phoneNumber = $_POST["phonenumber"];
     $service = $_POST["service"];
     $date = $_POST["date"];
     $time = $_POST["time"];
@@ -86,5 +85,8 @@ if (isset($_POST['create'])) {
     // Je kunt hier een succesmelding tonen of de gebruiker doorverwijzen naar een andere pagina
     echo "Afspraak is succesvol toegevoegd.";
 
-    header("Location: index.php");
+
 }
+
+
+header("Location: index.php");
