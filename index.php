@@ -5,7 +5,7 @@
 
     <?php
     require_once('header.php');
-    $query = "SELECT appointments.*, users.firstName, users.lastName, services.name 
+    $query = "SELECT appointments.*, users.firstName, users.lastName, users.phoneNumber, users.email, services.name 
           FROM appointments
           INNER JOIN users ON appointments.userId = users.Id
           INNER JOIN services ON appointments.serviceId = services.Id";
@@ -35,6 +35,8 @@
                         <tr>
                             <td>Voornaam</td>
                             <td>Achternaam</td>
+                            <td>Telefoonnummer</td>
+                            <td>email</td>
                             <td>Dienst</td>
                             <td>Datum</td>
                             <td>Tijd</td>
@@ -46,6 +48,8 @@
                             <tr>
                                 <td><?php echo $appointment['firstName'] ?></td>
                                 <td><?php echo $appointment['lastName'] ?></td>
+                                <td><?php echo $appointment['phoneNumber'] ?></td>
+                                <td><?php echo $appointment['email'] ?></td>
                                 <td><?php echo $appointment['name'] ?></td>
                                 <td><?php echo $appointment['date'] ?></td>
                                 <td><?php echo $appointment['time'] ?></td>
