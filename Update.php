@@ -62,7 +62,7 @@ require_once('header.php');
                 </div>
 
                 <!-- Hidden input fields for selectedAppointmentId -->
-                <input type="hidden" name="selectedAppointmentId" value="<?php echo $appointment['selectedAppointmentId']; ?>">
+                
 
                 <div class="form-group">
                     <label>Diensten</label>
