@@ -47,7 +47,6 @@ if (isset($_POST['create'])) {
     $phoneNumber = $_POST["phonenumber"];
     $firstname = $_POST["firstname"]; 
     $lastname = $_POST["lastname"];   
-    $service = $_POST["service"];
     $date = $_POST["date"];
     $time = $_POST["time"];
     $serviceId = $_POST["serviceId"];
