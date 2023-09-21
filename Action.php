@@ -3,7 +3,6 @@
 include 'Connect.php';
 
 if (isset($_POST['update'])) {
-
     $userId = $_POST["userId"];
     $email = $_POST["email"];
     $phoneNumber = $_POST["phoneNumber"];
@@ -40,28 +39,35 @@ if (isset($_POST['update'])) {
 }
 
 
+
+
+
 if (isset($_POST['create'])) {
     $email = $_POST["email"];
     $phoneNumber = $_POST["phonenumber"];
+    $firstname = $_POST["firstname"]; 
+    $lastname = $_POST["lastname"];   
     $service = $_POST["service"];
     $date = $_POST["date"];
     $time = $_POST["time"];
     $serviceId = $_POST["serviceId"];
 
+    
+
     // Voeg eerst een nieuwe gebruiker toe
-    $userQuery = "INSERT INTO users (email, phoneNumber) VALUES (:email, :phoneNumber)";
+    $userQuery = "INSERT INTO users (email, phoneNumber, firstname, lastname) VALUES (:email, :phoneNumber, :firstname, :lastname)";
     $userStatement = $conn->prepare($userQuery);
     $userStatement->execute([
         ":email" => $email,
         ":phoneNumber" => $phoneNumber,
+        ":firstname" => $firstname,
+        ":lastname" => $lastname,
     ]);
 
     // Haal de ID op van de zojuist toegevoegde gebruiker
     $userId = $conn->lastInsertId();
 
     // Voeg vervolgens een nieuwe afspraak toe
-  
-
     $appointmentQuery = "INSERT INTO appointments (userId, serviceId, date, time) VALUES (:userId, :serviceId, :date, :time)";
     $appointmentStatement = $conn->prepare($appointmentQuery);
     $appointmentStatement->execute([
@@ -71,14 +77,12 @@ if (isset($_POST['create'])) {
         ":time" => $time,
     ]);
 
+
     // Nu is de nieuwe afspraak toegevoegd aan de database
 
     // Je kunt hier een succesmelding tonen of de gebruiker doorverwijzen naar een andere pagina
     echo "Afspraak is succesvol toegevoegd.";
-
-    
-
 }
 
 
-header("Location: index.php");
+//header("Location: index.php");
