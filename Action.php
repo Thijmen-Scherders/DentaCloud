@@ -26,15 +26,6 @@ if (isset($_POST['update'])) {
     ]);
 
 
-    $serviceQuery = "UPDATE services
-    SET name = :name
-    WHERE Id = :serviceId";
-    $serviceStatement = $conn->prepare($serviceQuery);
-    $serviceStatement->execute([
-        ":name" => $serviceName,
-        ":serviceId" => $serviceId
-    ]);
-
     $appointmentQuery = "UPDATE appointments
     SET date = :date, time = :time
     WHERE userId = :userId AND serviceId = :serviceId";
