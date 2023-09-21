@@ -1,5 +1,6 @@
 <?php
 require_once('header.php');
+include 'Scripts.php';
 
 // Je haalt de gebruikers- en dienstgegevens op
 $query = "SELECT appointments.*, users.*, services.name as serviceName
@@ -41,41 +42,9 @@ require_once('header.php');
             <input type="hidden" name="userId" value="<?php echo $appointment['userId']; ?>">
             <input type="hidden" name="serviceId" value="<?php echo $appointment['serviceId']; ?>">
 
-            <script>
-                // Eventlistener toevoegen aan het inputveld
-                document.getElementById("telefoon").addEventListener("input", function() {
-                    var telefoonInput = document.getElementById("telefoon").value;
-                    var telefoonRegex = /^\d{10}$/; // Dit voorbeeld accepteert 10 cijfers, pas aan volgens jouw eisen
-                    var foutmeldingElement = document.getElementById("foutmelding");
+           
 
-                    if (telefoonInput.trim() === "") {
-                        // Telefoonnummerveld is leeg, dus de foutmelding verwijderen
-                        foutmeldingElement.textContent = "";
-                    } else if (!telefoonRegex.test(telefoonInput)) {
-                        foutmeldingElement.textContent = "Voer een geldig telefoonnummer in (bijv. 0123456789).";
-                    } else {
-                        foutmeldingElement.textContent = "";
-                    }
-                });
-            </script>
-
-            <script>
-                // Eventlistener toevoegen aan het inputveld
-                document.getElementById("email").addEventListener("input", function() {
-                    var emailInput = document.getElementById("email").value;
-                    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                    var foutmeldingElement = document.getElementById("foutmelding");
-
-                    if (emailInput.trim() === "") {
-                        // E-mailveld is leeg, dus de foutmelding verwijderen
-                        foutmeldingElement.textContent = "";
-                    } else if (!emailRegex.test(emailInput)) {
-                        foutmeldingElement.textContent = "Voer een geldig e-mailadres in.";
-                    } else {
-                        foutmeldingElement.textContent = "";
-                    }
-                });
-            </script>
+          
 
             <div class="form-group">
                 <label>Diensten</label>
@@ -109,28 +78,7 @@ require_once('header.php');
                 <input type="text" class="form-control" name="time" id="tijd" value="<?php echo $formattedTime; ?>" placeholder="Vul hier uw tijd in">
                 <p id="foutmelding" style="color: red;"></p>
             </div>
-            <script>
-                // Eventlistener toevoegen aan het inputveld
-                document.getElementById("tijd").addEventListener("input", function() {
-                    // Huidige tijd ophalen
-                    var huidigeTijd = new Date();
-                    var uur = huidigeTijd.getHours();
-                    var minuten = huidigeTijd.getMinutes();
-
-                    // Ingevoerde datum en tijd ophalen uit de inputvelden
-                    var ingevoerdeDatum = document.getElementById("datum").value;
-                    var ingevoerdeTijd = document.getElementById("tijd").value;
-                    var ingevoerdDatumTijd = new Date(ingevoerdeDatum + "T" + ingevoerdeTijd);
-
-                    // Tijd vergelijken
-                    if (ingevoerdDatumTijd <= huidigeTijd) {
-                        document.getElementById("foutmelding").textContent = "Kies een tijd in de toekomst.";
-                        document.getElementById("tijd").value = ""; // Veld leegmaken
-                    } else {
-                        document.getElementById("foutmelding").textContent = "";
-                    }
-                });
-            </script>
+           
 
             <button type="submit" name="update" class="btn btn-primary">Submit</button>
         </form>
