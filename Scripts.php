@@ -52,4 +52,9 @@
           }
         });
         });
+
+
+        function showSuccessPopup() {
+        alert('Het formulier is succesvol verzonden!');
+    }
       </script>

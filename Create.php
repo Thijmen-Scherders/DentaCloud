@@ -1,5 +1,6 @@
 <?php
-require_once("header.php")
+require_once("header.php");
+include 'Scripts.php';
 
 ?>
 <!DOCTYPE html>
@@ -81,7 +82,7 @@ require_once("header.php")
 
   
 
-      <button type="submit" name="create" class="btn btn-primary">Submit</button>
+      <button type="submit" name="create" class="btn btn-primary" onclick="showSuccessPopup()">Submit</button>
     </form>
 
 
