@@ -1,6 +1,10 @@
 <?php
 
 include 'Connect.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+
 $action = $_POST['update'];
 if($action == "update" ) {
     $email = $_POST["email"];
@@ -76,6 +80,35 @@ if (isset($_POST['create'])) {
         ":date" => $date,
         ":time" => $time,
     ]);
+
+
+    // mail sturen met afspraakbevestiging. Mailgegevens moeten we nog krijgen. Als we die hebben, kan onderstaande weer uit comment.
+    /*
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true); 
+
+    $mail->isSMTP();
+    $mail->Host = '';
+    $mail->SMTPAuth = true;
+    $mail->Username = ''; 
+    $mail->Password = ''; 
+    $mail->SMTPSecure = 'tls'; 
+    $mail->Port = 587; 
+    $mail->SMTPDebug = 2;
+
+    $mail->setFrom('email', 'naam');
+    $mail->addAddress($email, $firstname . ' ' . $lastname);
+
+    $mail->Subject = 'Afspraakbevestiging';
+    $mail->Body = 'Beste ' . $firstname . ' ' . $lastname . ', 
+                   Uw afspraak voor ' . $serviceId . ' op ' . $date . ' om ' . $time . ' is succesvol toegevoegd.';
+
+    if ($mail->send()) {
+        echo "Afspraak is succesvol toegevoegd en een bevestigingsmail is verzonden.";
+    } else {
+        echo "Er is tifeen probleem opgetreden bij het verzenden van de bevestigingsmail.";
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    }
+*/
 
 
     // Nu is de nieuwe afspraak toegevoegd aan de database
