@@ -52,6 +52,7 @@
                                 <td class="actions">
                                     <a href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
                                     <a href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

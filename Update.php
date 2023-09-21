@@ -1,15 +1,6 @@
 <?php
 require_once('header.php');
 include 'Scripts.php';
-
-// Je haalt de gebruikers- en dienstgegevens op
-$query = "SELECT appointments.*, users.*, services.name as serviceName
-          FROM appointments
-          INNER JOIN users ON appointments.userId = users.Id
-          INNER JOIN services ON appointments.serviceId = services.Id";
-$statement = $conn->prepare($query);
-$statement->execute();
-$appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -17,72 +8,98 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 require_once('header.php');
-
 ?>
 
 <body>
-    <h1>Verander de afspraak van <?php echo $appointment['firstName']  ?> </h1>
+    <?php
+    $test = $_GET['id'];
+    // Haal de gebruikers- en dienstgegevens op
+    $queryselectedAppointments = "SELECT * FROM appointments
+    WHERE id = $test";
+    $statement = $conn->prepare($queryselectedAppointments);
+    $statement->execute();
+    $appointment = $statement->fetch(PDO::FETCH_ASSOC);
     
+    $appointmentUserId = $appointment['userId'];
+    // get user id of appointment
+    $queryUser = "SELECT * FROM users
+    WHERE id = $appointmentUserId";
+    $statement = $conn->prepare($queryUser);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    <?php foreach ($appointments as $appointment) : ?>
+    $appointServiceId = $appointment['serviceId'];
+
+    $serviceSearchQuery = "SELECT * FROM services WHERE id = $appointServiceId";
+    $statement = $conn->prepare($serviceSearchQuery);
+    $statement->execute();
+    $selectedService = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+    $query = "SELECT * FROM services ORDER BY name ASC LIMIT 0, 6";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+?>
+        
+        
+      <h1>Verander de afspraak van <?php echo $user['firstName'] ?></h1>  
+
+   
         <form method="post" action="action.php">
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $appointment['email'] ?>" placeholder="E-mail">
-                <p id="foutmelding" style="color: red;"></p>
-            </div>
-
-            <div class="form-group">
-                <label>Telefoonnummer</label>
-                <input type="text" class="form-control" id="telefoon" name="phoneNumber" value="<?php echo $appointment['phoneNumber'] ?>" placeholder="Telefoonnummer">
-                <p id="foutmelding" style="color: red;"></p>
-            </div>
-
-            <!-- Hidden input fields for userId and appointmentsId -->
-            <input type="hidden" name="userId" value="<?php echo $appointment['userId']; ?>">
-            <input type="hidden" name="serviceId" value="<?php echo $appointment['serviceId']; ?>">
-
            
+                <!-- Toon het bewerkingsformulier alleen als de afspraak overeenkomt met de geselecteerde ID -->
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
+                    <p id="foutmelding" style="color: red;"></p>
+                </div>
 
-          
+                <div class="form-group">
+                    <label>Telefoonnummer</label>
+                    <input type="text" class="form-control" id="telefoon" name="phoneNumber" value="<?php echo $user['phoneNumber'] ?>" placeholder="Telefoonnummer">
+                    <p id="foutmelding" style="color: red;"></p>
+                </div>
 
-            <div class="form-group">
-                <label>Diensten</label>
-                <select name="service" id="diensten">
-                    <option value="">Maak uw keuze</option>
-                    <?php
-                    try {
-                        $query = "SELECT name FROM services ORDER BY name ASC LIMIT 0, 6";
-                        $result = $conn->query($query);
+                <!-- Hidden input fields for selectedAppointmentId -->
+                <input type="hidden" name="selectedAppointmentId" value="<?php echo $appointment['selectedAppointmentId']; ?>">
 
-                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                            $selected = ($row['name'] == $appointment['name']) ? 'selected' : '';
-                            echo "<option value='" . $row['name'] . "' $selected>" . $row['name'] . "</option>";
+                <div class="form-group">
+                    <label>Diensten</label>
+                    <select name="service" id="diensten">
+                        <option value="<?php echo $selectedService['Id']; ?>"><?php echo $selectedService['name'] ?></option>
+                        <?php foreach($result as $service){
+
+                            ?>
+                            <?php if($service['Id'] !=  $selectedService['Id']){
+                                ?>
+                            
+                            <option value="<?php echo $service['id'] ?>"><?php echo $service['name'] ?></option>
+                            
+                            <?php
+                            }
                         }
-                    } catch (PDOException $e) {
-                        die("Connection failed: " . $e->getMessage());
-                    }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="datum">Datum:</label>
+                    <input type="date" class="form-control" id="datum" name="date" value="<?php echo $appointment['date']; ?>" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
+                </div>
+
+                <div class="form-group">
+                    <label>Tijd</label>
+                    <?php
+                    $formattedTime = date('H:i', strtotime($appointment['time']));
                     ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="datum">Datum:</label>
-                <input type="date" class="form-control" id="datum" name="date" value="<?php echo $appointment['date']; ?>" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
-            </div>
+                    <input type="text" class="form-control" name="time" id="tijd" value="<?php echo $formattedTime; ?>" placeholder="Vul hier uw tijd in">
+                    <p id="foutmelding" style="color: red;"></p>
+                </div>
 
-            <div class="form-group">
-                <label>Tijd</label>
-                <?php
-                $formattedTime = date('H:i', strtotime($appointment['time']));
-                ?>
-                <input type="text" class="form-control" name="time" id="tijd" value="<?php echo $formattedTime; ?>" placeholder="Vul hier uw tijd in">
-                <p id="foutmelding" style="color: red;"></p>
-            </div>
-           
-
-            <button type="submit" name="update" class="btn btn-primary">Submit</button>
+                <button type="submit" name="update" class="btn btn-primary">Submit</button>
+       
         </form>
-    <?php endforeach; ?>
+
 </body>
 
 </html>
