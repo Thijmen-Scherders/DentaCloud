@@ -1,10 +1,11 @@
 <?php
 
 include 'Connect.php';
-
-if (isset($_POST['update'])) {
-    $userId = $_POST["userId"];
+$action = $_POST['update'];
+if($action == "update" ) {
     $email = $_POST["email"];
+    //var_dump($email);
+    //die();
     $phoneNumber = $_POST["phoneNumber"];
     $service = $_POST["service"];
     $date = $_POST["date"];

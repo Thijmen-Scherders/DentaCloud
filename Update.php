@@ -103,7 +103,7 @@ require_once('header.php');
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="action.php">
+                    <form method="POST" action="Action.php">
                         <div class="form-group">
                             <label>Email address</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
@@ -116,9 +116,8 @@ require_once('header.php');
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
 
-                        <!-- Hidden input fields for userId and userId -->
-                        <!-- <input type="hidden" name="userId" value="<?php echo $user['userId']; ?>">
-                        <input type="hidden" name="serviceId" value="<?php echo $user['serviceId']; ?>"> -->
+                       <input type="hidden" name="update" value="update">
+                        
 
                         <div class="form-group">
                             <label>Diensten</label>
@@ -138,7 +137,7 @@ require_once('header.php');
                         </div>
                         <div class="form-group">
                             <label for="datum">Datum:</label>
-                            <input type="date" class="form-control" id="datum" name="date" value="<?php echo $user[0]['date']; ?>" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
+                            <input type="date" class="form-control" id="datum" name="date" value="<?php echo $appointment['date']; ?>" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
                         </div>
 
                         <div class="form-group">
@@ -150,7 +149,7 @@ require_once('header.php');
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
 
-                        <button type="submit" name="update" class="btn btn-primary">Opslaan</button>
+                        <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
                 </div>
             </div>
