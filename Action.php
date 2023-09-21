@@ -84,4 +84,4 @@ if (isset($_POST['create'])) {
 }
 
 
-//header("Location: index.php");
+header("Location: index.php");
