@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+require_once('header.php');
 
 // Je haalt de gebruikers- en dienstgegevens op
 $query = "SELECT appointments.*, users.*, services.name as serviceName
@@ -20,7 +20,7 @@ require_once('header.php');
 ?>
 
 <body>
-    <h1>Verander je afspraak</h1>
+    <h1>Verander de afspraak van <?php echo $appointment['firstName']  ?> </h1>
     
 
     <?php foreach ($appointments as $appointment) : ?>

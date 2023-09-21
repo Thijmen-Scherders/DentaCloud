@@ -26,9 +26,7 @@
                             <h2>Afspraken <b></b></h2>
                         </div>
                         <div class="col-sm-4">
-                            <button><a href="Create.php" class="btn btn-info add-new">
-                                Maak nieuw afspraak
-                            </a></button>
+                           
                         </div>
                     </div>
                 </div>
