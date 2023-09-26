@@ -1,4 +1,4 @@
-<script>
+
         // Eventlistener toevoegen aan het inputveld
         document.getElementById("telefoon").addEventListener("input", function() {
           var telefoonInput = document.getElementById("telefoon").value;
@@ -57,4 +57,3 @@
         function showSuccessPopup() {
         alert('Het formulier is succesvol verzonden!');
     }
-      </script>

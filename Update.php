@@ -1,20 +1,19 @@
 <?php
-session_start(); 
+session_start();
 
 require_once('header.php');
-include 'Scripts.php';
 
 if (isset($_SESSION['userId'])) {
     $userId = $_SESSION['userId'];
 } else {
-    $userId = NULL; 
+    $userId = NULL;
 }
 
 
 
-logging("het updateformulier bezocht",$userId);
+logging("het updateformulier bezocht", $userId);
 
-$appointmentId = $_GET["id" ];
+$appointmentId = $_GET["id"];
 
 
 
@@ -75,15 +74,15 @@ require_once('header.php');
             </tr>
         </thead>
         <tbody>
-                <tr>
-                    <td><?php echo $user['firstName'] . ' ' . $user['lastName']; ?></td>
-                    <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['phoneNumber']; ?></td>
-                    <td><?php echo $service['name']; ?></td>
-                    <td><?php echo $appointment['date']; ?></td>
-                    <td><?php echo date('H:i', strtotime($appointment['time'])); ?></td>
-                </tr>
-          
+            <tr>
+                <td><?php echo $user['firstName'] . ' ' . $user['lastName']; ?></td>
+                <td><?php echo $user['email']; ?></td>
+                <td><?php echo $user['phoneNumber']; ?></td>
+                <td><?php echo $service['name']; ?></td>
+                <td><?php echo $appointment['date']; ?></td>
+                <td><?php echo date('H:i', strtotime($appointment['time'])); ?></td>
+            </tr>
+
         </tbody>
     </table>
 
@@ -91,7 +90,7 @@ require_once('header.php');
 
     <!-- JavaScript om de modal te openen wanneer de pagina wordt geladen -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#editModal').modal('show');
         });
     </script>
@@ -108,7 +107,7 @@ require_once('header.php');
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="Action.php">
-                    <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="action" value="update">
                         <div class="form-group">
                             <label>Email address</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
@@ -120,22 +119,22 @@ require_once('header.php');
                             <input type="text" class="form-control" id="telefoon" name="phoneNumber" value="<?php echo $user['phoneNumber'] ?>" placeholder="Telefoonnummer">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
-                        
+
 
                         <div class="form-group">
                             <label>Diensten</label>
                             <select name="service" id="diensten">
-                                 <option value="<?php echo $service['Id'];  ?>"><?php echo $service['name']; ?></option> 
+                                <option value="<?php echo $service['Id'];  ?>"><?php echo $service['name']; ?></option>
                                 <?php
 
-                                 foreach($services as $service){
-                                  if($serviceId != $service['Id']){
-                                    ?> <option value="<?php echo $service['Id'];?>"><?php echo $service['name']; ?></option> <?php
-                                  } ?>
-                                    
-                                   <?php
-                                 }
-                                ?>          
+                                foreach ($services as $service) {
+                                    if ($serviceId != $service['Id']) {
+                                ?> <option value="<?php echo $service['Id']; ?>"><?php echo $service['name']; ?></option> <?php
+                                                                                                                            } ?>
+
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -153,8 +152,8 @@ require_once('header.php');
                         </div>
 
 
-                         <input type="hidden" name="userId" value="<?php echo $user['Id'];?>">
-                         <input type="hidden" name="appointmentId" value="<?php echo $appointment['Id'];?>">
+                        <input type="hidden" name="userId" value="<?php echo $user['Id']; ?>">
+                        <input type="hiddem" name="appointmentId" value="<?php echo $appointment['Id']; ?>">
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
@@ -162,6 +161,7 @@ require_once('header.php');
             </div>
         </div>
     </div>
+    <script src="scripts.js"></script>
 </body>
 
 </html>

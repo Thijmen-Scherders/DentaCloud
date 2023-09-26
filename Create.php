@@ -1,13 +1,13 @@
 <?php
-session_start(); 
+session_start();
 
 require_once('header.php');
-include 'Scripts.php';
+
 
 if (isset($_SESSION['userId'])) {
   $userId = $_SESSION['userId'];
 } else {
-  $userId = NULL; 
+  $userId = NULL;
 }
 
 
@@ -91,16 +91,12 @@ logging("het afsprakenformulier bezocht", $userId);
       </div>
 
 
-
-
-        <input type="hidden" name="action" value="create">
+      <input type="hidden" name="action" value="create">
       <button type="submit" name="create" class="btn btn-primary" onclick="showSuccessPopup()">Submit</button>
     </form>
 
 
-
-
-
+    <script src="scripts.js"></script>
 </body>
 
 </html>
