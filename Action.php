@@ -5,7 +5,7 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 require 'PHPMailer/src/Exception.php';
 
-$dateNow = date('d-m-Y H:i');
+$dateNow = date('Y-m-d H:i:s');
 $ipAddress = $_SERVER['REMOTE_ADDR']; 
 
 $action = $_POST['update'];
