@@ -1,6 +1,18 @@
 <?php
-require_once("header.php");
+session_start(); 
+
+require_once('header.php');
 include 'Scripts.php';
+
+if (isset($_SESSION['userId'])) {
+  $userId = $_SESSION['userId'];
+} else {
+  $userId = NULL; 
+}
+
+
+
+logging("het afsprakenformulier bezocht", $dateNow, $userId, $ipAddress);
 
 ?>
 <!DOCTYPE html>
@@ -42,24 +54,24 @@ include 'Scripts.php';
         <p id="foutmelding" style="color: red;"></p>
       </div>
 
-<div class="form-group">
-    <label>Diensten</label>
-    <select name="serviceId" id="diensten">
-        <option value="">Maak uw keuze</option>
-        <?php
-        try {
+      <div class="form-group">
+        <label>Diensten</label>
+        <select name="serviceId" id="diensten">
+          <option value="">Maak uw keuze</option>
+          <?php
+          try {
             $query = "SELECT id, name FROM services ORDER BY NAME ASC LIMIT 0, 6";
             $result = $conn->query($query);
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+              echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
             }
-        } catch (PDOException $e) {
+          } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
-        }
-        ?>
-    </select>
-</div>
+          }
+          ?>
+        </select>
+      </div>
       <style>
         #diensten option:first-child {
           display: none;
@@ -80,7 +92,7 @@ include 'Scripts.php';
 
 
 
-  
+
 
       <button type="submit" name="create" class="btn btn-primary" onclick="showSuccessPopup()">Submit</button>
     </form>

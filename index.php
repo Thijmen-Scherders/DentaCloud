@@ -4,7 +4,20 @@
 <body>
 
     <?php
-    require_once('header.php');
+  session_start(); 
+
+  require_once('header.php');
+  include 'Scripts.php';
+  
+  if (isset($_SESSION['userId'])) {
+      $userId = $_SESSION['userId'];
+  } else {
+      $userId = NULL; 
+  }
+  
+  
+  logging("het updateformulier bezocht", $dateNow, $userId, $ipAddress);
+
     $query = "SELECT appointments.*, users.firstName, users.lastName, users.phoneNumber, users.email, services.name 
           FROM appointments
           INNER JOIN users ON appointments.userId = users.Id
@@ -13,9 +26,6 @@
     $statement->execute();
     $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
-
-
-
 
     <div class="container-lg">
         <div class="table-responsive">

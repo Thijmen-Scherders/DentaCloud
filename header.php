@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Dentacloud Crud</title>
-    <?php include_once("Connect.php")?>
+    <?php include_once("Connect.php");
+    include 'Action.php';
+    ?>
 </head>
 <body>
     <div class="header">
@@ -16,6 +18,7 @@
             <ul class="header-menu">
                 <li><a href="index.php">Afspraken</a></li>
                 <li><a href="create.php">Maak een afspraak</a></li>
+                <li><a href="logs.php">Logs</a></li>
             </ul>
         </div>
     </div>

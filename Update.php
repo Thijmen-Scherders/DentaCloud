@@ -1,7 +1,18 @@
 <?php
+session_start(); 
+
 require_once('header.php');
 include 'Scripts.php';
 
+if (isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+} else {
+    $userId = NULL; 
+}
+
+
+
+logging("het updateformulier bezocht", $dateNow, $userId, $ipAddress);
 
 $appointmentId = $_GET["id" ];
 
