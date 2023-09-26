@@ -12,7 +12,7 @@ if (isset($_SESSION['userId'])) {
 
 
 
-logging("het afsprakenformulier bezocht", $dateNow, $userId, $ipAddress);
+logging("het afsprakenformulier bezocht", $userId);
 
 ?>
 <!DOCTYPE html>
@@ -93,7 +93,7 @@ logging("het afsprakenformulier bezocht", $dateNow, $userId, $ipAddress);
 
 
 
-
+        <input type="hidden" name="action" value="create">
       <button type="submit" name="create" class="btn btn-primary" onclick="showSuccessPopup()">Submit</button>
     </form>
 

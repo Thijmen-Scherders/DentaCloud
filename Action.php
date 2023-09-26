@@ -4,21 +4,18 @@ include 'Connect.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 require 'PHPMailer/src/Exception.php';
+include 'LoggingFunction.php';
 
-$dateNow = date('Y-m-d H:i:s');
-$ipAddress = $_SERVER['REMOTE_ADDR']; 
+$action = $_POST['action'];
 
-$action = $_POST['update'];
 if($action == "update" ) {
     $email = $_POST["email"];
-    //var_dump($email);
-    //die();
     $phoneNumber = $_POST["phoneNumber"];
-    $service = $_POST["service"];
+    $serviceId = $_POST["service"];
     $date = $_POST["date"];
     $time = $_POST["time"];
-    $serviceName = $_POST["service"];
-    $serviceId = $_POST["serviceId"];
+
+    $appointmentId = $_POST['appointmentId'];
     $userId = $_POST["userId"];
    
 
@@ -34,17 +31,19 @@ if($action == "update" ) {
 
 
     $appointmentQuery = "UPDATE appointments
-    SET date = :date, time = :time
-    WHERE userId = :userId AND serviceId = :serviceId";
+    SET date = :date, time = :time, serviceId = :serviceId
+    WHERE Id = :appointmentId";
     $appointmentStatement = $conn->prepare($appointmentQuery);
     $appointmentStatement->execute([
         ":date" => $date,
         ":time" => $time,
-        ":userId" => $userId,
+        ":appointmentId" => $appointmentId,
         ":serviceId" => $serviceId
     ]);
 
-    logging("Een afspraak is gewijzigd", $dateNow, $userId, $ipAddress);
+    logging("Een afspraak is gewijzigd", $userId);
+
+    header('Location: index.php ');
 
 }
 
@@ -82,7 +81,7 @@ if (isset($_POST['create'])) {
         ":time" => $time,
     ]);
 
-    logging("een afspraak aangemaakt", $dateNow, $userId, $ipAddress);
+    logging("een afspraak aangemaakt", $userId);
 
 
     // Dit potentieel nog veranderen naar support@bsolutions.nl
@@ -118,21 +117,12 @@ if (isset($_POST['create'])) {
 
     // Je kunt hier een succesmelding tonen of de gebruiker doorverwijzen naar een andere pagina
     echo "Afspraak is succesvol toegevoegd.";
+
+    header('Location: index.php ');
     
 }
 
-function logging($message, $dateNow, $userId, $ipAddress)
-{
-    include 'Connect.php'; 
-    $LogsQuery = "INSERT INTO logs (userId, date, ipAddress, message) VALUES (:userId, :date, :ipAddress, :message)";
-    $logsStatement = $conn->prepare($LogsQuery);
-    $logsStatement->execute([
-        ":date" => $dateNow,
-        ":userId" => $userId,
-        ":ipAddress" => $ipAddress,
-        ":message" => $message,
-    ]);
-}
+
 
 
 // header("Location: index.php");

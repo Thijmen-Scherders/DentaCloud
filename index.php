@@ -15,7 +15,7 @@
       $userId = NULL; 
   }
 
-  logging("het updateformulier bezocht", $dateNow, $userId, $ipAddress);
+  logging("het updateformulier bezocht", $userId, );
 
     $query = "SELECT appointments.*, users.firstName, users.lastName, users.phoneNumber, users.email, services.name 
           FROM appointments

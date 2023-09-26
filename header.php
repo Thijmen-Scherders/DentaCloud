@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Dentacloud Crud</title>
     <?php include_once("Connect.php");
-    include 'Action.php';
+    include_once('LoggingFunction.php');
+
     ?>
 </head>
 <body>

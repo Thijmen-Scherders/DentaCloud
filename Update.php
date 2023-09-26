@@ -56,8 +56,6 @@ $services = $statement->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <?php
-var_dump($service);
-
 require_once('header.php');
 ?>
 
@@ -115,6 +113,7 @@ require_once('header.php');
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="Action.php">
+                    <input type="hidden" name="action" value="update">
                         <div class="form-group">
                             <label>Email address</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
@@ -126,8 +125,6 @@ require_once('header.php');
                             <input type="text" class="form-control" id="telefoon" name="phoneNumber" value="<?php echo $user['phoneNumber'] ?>" placeholder="Telefoonnummer">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
-
-                       <input type="hidden" name="update" value="update">
                         
 
                         <div class="form-group">
@@ -159,6 +156,10 @@ require_once('header.php');
                             <input type="text" class="form-control" name="time" id="tijd" value="<?php echo $formattedTime; ?>" placeholder="Vul hier uw tijd in">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
+
+
+                         <input type="hidden" name="userId" value="<?php echo $user['Id'];?>">
+                         <input type="hiddem" name="appointmentId" value="<?php echo $appointment['Id'];?>">
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
