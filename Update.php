@@ -89,11 +89,6 @@ require_once('header.php');
 
     <!-- Voeg hier eventuele andere inhoud van de pagina toe -->
 
-    <!-- Voeg de Bootstrap CSS en JavaScript toe aan je project voor de modals -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <!-- JavaScript om de modal te openen wanneer de pagina wordt geladen -->
     <script>
         $(document).ready(function () {
