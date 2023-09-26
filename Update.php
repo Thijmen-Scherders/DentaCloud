@@ -154,7 +154,7 @@ require_once('header.php');
 
 
                          <input type="hidden" name="userId" value="<?php echo $user['Id'];?>">
-                         <input type="hiddem" name="appointmentId" value="<?php echo $appointment['Id'];?>">
+                         <input type="hidden" name="appointmentId" value="<?php echo $appointment['Id'];?>">
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
