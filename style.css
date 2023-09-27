@@ -1,3 +1,4 @@
+
 /* VisbyCF-Bold */
 @font-face {
     font-family: 'VisbyCF-Bold';
@@ -138,6 +139,11 @@
     font-style: italic;
 }
 
+body
+{
+    font-family: 'VisbyCF-Medium'!important;
+}
+
 .header {
     display: flex;
     background-color: black;
@@ -146,7 +152,6 @@
     justify-content: space-between;
     background-color: #A6DBF5;
     margin-bottom: 50px;
-    font-family: 'VisbyCF-DemiBold', 'serif';
 }
 
 .left-section {
