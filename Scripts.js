@@ -65,9 +65,7 @@ document.forms["createForm"].addEventListener("submit", function(event) {
       errorField.insertAdjacentHTML("afterend", "<p class='foutmelding' style='color: red;'>" + errorMessage + "</p>");
     }
     event.preventDefault(); // Prevent form to submit
-  } else {
-    showSuccessPopup();
-  }
+  } 
 });
 
 function clearErrorMessages() {
@@ -77,9 +75,6 @@ function clearErrorMessages() {
   });
 }
 
-function showSuccessPopup() {
-  alert('Het formulier is succesvol verzonden!');
-}
 
 
 
