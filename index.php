@@ -39,6 +39,7 @@
     ?>
 
     <div class="container-lg">
+        <h1>Afspraken</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead>

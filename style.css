@@ -144,6 +144,12 @@ body
     font-family: 'VisbyCF-Medium'!important;
 }
 
+h1
+{
+    color: #A6DBF5!important;
+    font-weight: bold!important;
+}
+
 .header {
     display: flex;
     background-color: black;
@@ -232,3 +238,4 @@ body
 {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 7px;
 }
+
