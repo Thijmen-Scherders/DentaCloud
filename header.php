@@ -21,13 +21,10 @@
 <body>
     <div class="header">
         <div class="left-section">
-            <div class="logo-img">
-                <a href="index.php">
+            <a class="logo-img" href="index.php">
                 <img src="img/wolk-white.png" alt="witte wolk">
                 <img src="img/DentaCloud text white.png" alt="logo bedrijf">
-                </a>
-               
-            </div>
+            </a>
         </div>
         <div class="right-section">
             <ul class="header-menu">
