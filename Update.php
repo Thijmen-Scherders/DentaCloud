@@ -15,13 +15,19 @@ logging("het updateformulier bezocht", $userId);
 
 $appointmentId = $_GET["id"];
 
-
+if (isset($_GET['errors']) && $_GET['errors'] === 'true') {
+    $errorMessage = "Er ging iets mis. Probeer het alstublieft opnieuw.";
+} else {
+    $errorMessage = '';
+}
 
 // Je haalt de gebruikers- en dienstgegevens op
 $query = "SELECT * FROM appointments WHERE Id =$appointmentId";
 $statement = $conn->prepare($query);
 $statement->execute();
 $appointment = $statement->fetch(PDO::FETCH_ASSOC);
+
+
 
 $appointmentuserId = $appointment["userId"];
 
@@ -48,6 +54,7 @@ $query = "SELECT * FROM services";
 $statement = $conn->prepare($query);
 $statement->execute();
 $services = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -106,6 +113,11 @@ require_once('header.php');
                     </button>
                 </div>
                 <div class="modal-body">
+                    <?php if (!empty($errorMessage)) : ?>
+                        <div class="error-message" style="color: red; margin-bottom: 10px;">
+                            <?php echo $errorMessage; ?>
+                        </div>
+                    <?php endif; ?>
                     <form method="POST" action="Action.php">
                         <input type="hidden" name="action" value="update">
                         <div class="form-group">
@@ -130,7 +142,7 @@ require_once('header.php');
                                 foreach ($services as $service) {
                                     if ($serviceId != $service['Id']) {
                                 ?> <option value="<?php echo $service['Id']; ?>"><?php echo $service['name']; ?></option> <?php
-                                                                                                                            } ?>
+                                                                                                                        } ?>
 
                                 <?php
                                 }
@@ -153,7 +165,7 @@ require_once('header.php');
 
 
                         <input type="hidden" name="userId" value="<?php echo $user['Id']; ?>">
-                        <input type="hiddem" name="appointmentId" value="<?php echo $appointment['Id']; ?>">
+                        <input type="hidden" name="appointmentId" value="<?php echo $appointment['Id']; ?>">
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
@@ -161,6 +173,7 @@ require_once('header.php');
             </div>
         </div>
     </div>
+
     <script src="scripts.js"></script>
 </body>
 

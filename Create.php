@@ -10,6 +10,12 @@ if (isset($_SESSION['userId'])) {
   $userId = NULL;
 }
 
+// check if there are any error messages in the URL
+if (isset($_GET['errors']) && $_GET['errors'] === 'true') {
+  $errorMessage = "Er ging iets mis. Probeer het alstublieft opnieuw.";
+} else {
+  $errorMessage = '';
+}
 
 
 logging("het afsprakenformulier bezocht", $userId);
@@ -21,6 +27,11 @@ logging("het afsprakenformulier bezocht", $userId);
 <body>
 
   <div class="container">
+    <?php if (!empty($errorMessage)) : ?>
+      <div class="error-message" style="color: red; margin-bottom: 10px;">
+        <?php echo $errorMessage; ?>
+      </div>
+    <?php endif; ?>
     <form name="createForm" method="post" action="action.php">
       <div class="form-group">
         <label>Voornaam</label>

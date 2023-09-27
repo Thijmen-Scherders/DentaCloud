@@ -4,17 +4,30 @@
 <body>
 
     <?php
-  session_start(); 
+    session_start();
 
-  require_once('header.php');
-  
-  if (isset($_SESSION['userId'])) {
-      $userId = $_SESSION['userId'];
-  } else {
-      $userId = NULL; 
-  }
+    require_once('header.php');
 
-  logging("het updateformulier bezocht", $userId, );
+    if (isset($_SESSION['userId'])) {
+        $userId = $_SESSION['userId'];
+    } else {
+        $userId = NULL;
+    }
+
+
+    if (isset($_SESSION['success_message'])) {
+        $successMessage = $_SESSION['success_message'];
+        unset($_SESSION['success_message']); 
+    }
+
+    if (isset($successMessage)) : ?>
+        <div class="success-message">
+            <?php echo $successMessage; ?>
+        </div>
+        <?php endif;
+
+
+    logging("het updateformulier bezocht", $userId,);
 
     $query = "SELECT appointments.*, users.firstName, users.lastName, users.phoneNumber, users.email, services.name 
           FROM appointments
@@ -25,41 +38,41 @@
     $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
-<div class="container-lg">
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Voornaam</th>
-                    <th>Achternaam</th>
-                    <th>Telefoonnummer</th>
-                    <th>Email</th>
-                    <th>Dienst</th>
-                    <th>Datum</th>
-                    <th>Tijd</th>
-                    <th>Acties</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($appointments as $appointment) : ?>
+    <div class="container-lg">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td><?php echo $appointment['firstName'] ?></td>
-                        <td><?php echo $appointment['lastName'] ?></td>
-                        <td><?php echo $appointment['phoneNumber'] ?></td>
-                        <td><?php echo $appointment['email'] ?></td>
-                        <td><?php echo $appointment['name'] ?></td>
-                        <td><?php echo $appointment['date'] ?></td>
-                        <td><?php echo $appointment['time'] ?></td>
-                        <td class="actions">
-                            <a class="btn btn-primary" href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
-                            <a class="btn btn-danger" href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>
-                        </td>
+                        <th>Voornaam</th>
+                        <th>Achternaam</th>
+                        <th>Telefoonnummer</th>
+                        <th>Email</th>
+                        <th>Dienst</th>
+                        <th>Datum</th>
+                        <th>Tijd</th>
+                        <th>Acties</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($appointments as $appointment) : ?>
+                        <tr>
+                            <td><?php echo $appointment['firstName'] ?></td>
+                            <td><?php echo $appointment['lastName'] ?></td>
+                            <td><?php echo $appointment['phoneNumber'] ?></td>
+                            <td><?php echo $appointment['email'] ?></td>
+                            <td><?php echo $appointment['name'] ?></td>
+                            <td><?php echo $appointment['date'] ?></td>
+                            <td><?php echo $appointment['time'] ?></td>
+                            <td class="actions">
+                                <a class="btn btn-primary" href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
+                                <a class="btn btn-danger" href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 
 </html>
