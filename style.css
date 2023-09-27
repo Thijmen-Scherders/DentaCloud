@@ -223,6 +223,12 @@ body
 
 
 .btn:not(:disabled):not(.disabled){
-    background-color: #292828;
-    color: #A6DBF5;
+    background-color: #292828!important;
+    color: white;
+    border: none;
+}
+
+.table-responsive
+{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 7px;
 }

@@ -40,7 +40,7 @@
 
     <div class="container-lg">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Voornaam</th>
