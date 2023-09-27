@@ -82,7 +82,7 @@ logging("het afsprakenformulier bezocht", $userId);
 
       <div class="form-group">
         <label>Tijd</label>
-        <input type="time" class="form-control" id="tijd" name="time" placeholder="Vul hier uw tijd in">
+        <input type="time" class="form-control" id="tijd" name="time" placeholder="Vul hier uw tijd in" step="900">
 
       </div>
 
