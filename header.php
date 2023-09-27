@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -10,6 +11,7 @@
     <title>Dentacloud Crud</title>
     <?php include_once("Connect.php");
     include_once('LoggingFunction.php');
+    
 
 
     ?>
@@ -17,54 +19,16 @@
 <body>
     <div class="header">
         <div class="left-section">
-            <img src="" alt="logo bedrijf">
+            <img src="img/DentaCloud text white.png" alt="logo bedrijf">  
         </div>
         <div class="right-section">
             <ul class="header-menu">
-                <li><a href="index.php">Afspraken</a></li>
-                <li><a href="create.php">Maak een afspraak</a></li>
-                <li><a href="logs.php">Logs</a></li>
+                <li><a href="index.php"><b>Afspraken</b></a></li>
+                <li><a href="create.php"><b>Maak een afspraak</b></a></li>
+                <li><a href="logs.php"><b>Logs</b></a></li>
             </ul>
         </div>
     </div>
 </body>
-<style>
-    /* Voor nu style hier. Later met bootstrap en met de huisstijl van het bedrijf. */
 
-    .header {
-        display: flex;
-        background-color: black;
-        height: 80px;
-        color: white;
-        justify-content: space-between;
-    }
-
-    .left-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .right-section {
-        display: flex;
-        align-items: center;
-        width: 300px;
-    }
-
-    .header-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-    }
-
-    .header-menu li {
-        margin-right: 20px;
-    }
-
-    .header-menu li a {
-        text-decoration: none;
-        color: white;
-    }
-</style>
 </html>

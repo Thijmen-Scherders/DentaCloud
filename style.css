@@ -1,0 +1,44 @@
+.header {
+    display: flex;
+    background-color: black;
+    height: 80px;
+    color: white;
+    justify-content: space-between;
+    background-color: #A6DBF5;
+}
+
+.left-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    width: 350px;
+   
+}
+
+.header-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+   
+}
+
+.header-menu li {
+    margin-right: 20px;
+}
+
+.header-menu li a {
+    text-decoration: none;
+    color: white;
+}
+
+
+img{
+    width: 200px;
+    height: 40px;
+}
