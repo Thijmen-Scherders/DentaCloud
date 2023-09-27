@@ -172,14 +172,23 @@
 }
 
 .header-menu li {
+    list-style: none;
+    display: inline;
     margin-right: 20px;
 }
 
 .header-menu li a {
     text-decoration: none;
     color: white;
+    font-weight: bold;
+    transition: transform 0.9s; /* Voeg een overgangseffect toe voor soepelheid */
 }
 
+.header-menu li a:hover {
+    transform: scale(1.1); /* Pas de schaal aan om te laten 'springen' */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
 
 .logo-img {
     display: flex; 
