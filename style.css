@@ -193,7 +193,7 @@ body
     transform: scale(1.1); /* Pas de schaal aan om te laten 'springen' */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    color: black;
+    color: #292828;
 }
 
 .logo-img {
