@@ -215,3 +215,7 @@ body
     padding: 10px; 
     text-align: center; 
 }
+
+.btn btn-primary{
+   background-color: #A6DBF5;
+}
