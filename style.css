@@ -40,8 +40,18 @@
 }
 
 
-img{
-    width: 170px;
+.logo-img {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 300px;
+}
+
+
+.logo-img img {
+    max-width: 40%; 
+    height: auto;
+    margin: 10px; 
 }
 
 .success-message {

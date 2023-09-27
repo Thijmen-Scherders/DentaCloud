@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +12,19 @@
     <title>Dentacloud Crud</title>
     <?php include_once("Connect.php");
     include_once('LoggingFunction.php');
-    
+
 
 
     ?>
 </head>
+
 <body>
     <div class="header">
         <div class="left-section">
-            <img src="img/DentaCloud text white.png" alt="logo bedrijf">  
+            <div class="logo-img">
+                <img src="img/wolk-white.png" alt="witte wolk">
+                <img src="img/DentaCloud text white.png" alt="logo bedrijf">
+            </div>
         </div>
         <div class="right-section">
             <ul class="header-menu">
