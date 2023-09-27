@@ -166,8 +166,8 @@ require_once('header.php');
 
                         <input type="hidden" name="userId" value="<?php echo $user['Id']; ?>">
                         <input type="hidden" name="appointmentId" value="<?php echo $appointment['Id']; ?>">
-
                         <button type="submit" class="btn btn-primary">Opslaan</button>
+                        <a class="btn btn-danger" href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>      
                     </form>
                 </div>
             </div>
