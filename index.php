@@ -17,14 +17,14 @@
 
     if (isset($_SESSION['success_message'])) {
         $successMessage = $_SESSION['success_message'];
-        unset($_SESSION['success_message']); 
+        unset($_SESSION['success_message']);
     }
 
     if (isset($successMessage)) : ?>
         <div class="success-message">
             <?php echo $successMessage; ?>
         </div>
-        <?php endif;
+    <?php endif;
 
 
     logging("het updateformulier bezocht", $userId,);
@@ -65,14 +65,41 @@
                             <td><?php echo $appointment['time'] ?></td>
                             <td class="actions">
                                 <a class="btn btn-primary" href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
-                                <a class="btn btn-danger" href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>
+                                <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteModal<?= $appointment['Id'] ?>">Verwijderen</a>
                             </td>
                         </tr>
+
+                        <!-- Modal for Deletion -->
+                        <div class="modal fade" id="deleteModal<?= $appointment['Id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Weet u zeker dat u deze afspraak wilt verwijderen?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+                                        <form action="Delete.php" method="GET">
+                                            <input type="hidden" name="id" value="<?= $appointment['Id'] ?>">
+                                            <button type="submit" class="btn btn-primary">Verwijderen</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
+
+
+
 </body>
 
 </html>

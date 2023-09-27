@@ -1,6 +1,7 @@
 <?php
 include 'connect.php';
 
+
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
     // Ontvang de ID van het te verwijderen record
     $recordId = $_GET["id"];
