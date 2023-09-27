@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 20px;
 }
 
 .right-section {
@@ -40,8 +41,7 @@
 
 
 img{
-    width: 200px;
-    height: 40px;
+    width: 170px;
 }
 
 .success-message {
