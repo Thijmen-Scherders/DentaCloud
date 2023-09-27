@@ -50,7 +50,7 @@ $service = $statement->fetch(PDO::FETCH_ASSOC);
 
 // get all services
 
-$query = "SELECT * FROM services";
+$query = "SELECT * FROM services ORDER BY name ASC";
 $statement = $conn->prepare($query);
 $statement->execute();
 $services = $statement->fetchAll(PDO::FETCH_ASSOC);
