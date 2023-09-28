@@ -131,7 +131,7 @@ require_once('header.php');
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
                         <div class="form-group">
-                            <label>E-mail</label>
+                            <label>E-mailadres</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
@@ -160,7 +160,7 @@ require_once('header.php');
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="datum">Datum:</label>
+                            <label for="datum">Datum</label>
                             <input type="date" class="form-control" id="datum" name="date" value="<?php echo $appointment['date']; ?>" min="<?php echo date('Y-m-d', strtotime('+0 day')); ?>">
                         </div>
 
@@ -181,7 +181,7 @@ require_once('header.php');
                                     if ($time < $currentTime) {
                                         continue;
                                     }
-                                    
+
                                     $selected = ($formattedTimeOption === $selectedTime) ? 'selected' : '';
                                     echo "<option value=\"$formattedTimeOption\" $selected>$formattedTimeOption</option>";
                                 }

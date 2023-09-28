@@ -57,7 +57,7 @@
                         <th>Voornaam</th>
                         <th>Achternaam</th>
                         <th>Telefoonnummer</th>
-                        <th>Email</th>
+                        <th>E-mailadres</th>
                         <th>Dienst</th>
                         <th>Datum</th>
                         <th>Tijd</th>

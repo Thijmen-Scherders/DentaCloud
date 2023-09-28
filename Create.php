@@ -51,7 +51,7 @@ logging("het afsprakenformulier bezocht", $userId);
       </div>
 
       <div class="form-group">
-        <label>Emailadres</label>
+        <label>E-mailadres</label>
         <input type="email" class="form-control" name="email" id="email" placeholder="Vul hier uw email in">
 
       </div>
