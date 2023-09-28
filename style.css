@@ -92,10 +92,7 @@
 /* VisbyCF-Medium */
 @font-face {
     font-family: 'VisbyCF-Medium';
-    src: url('fonts/VisbyCF-Medium.woff2') format('woff2'),
-         url('fonts/VisbyCF-Medium.woff') format('woff');
-    font-weight: 500; 
-    font-style: normal;
+    src: url('fonts/VisbyCF-Medium.otf');
 }
 
 /* VisbyCF-MediumOblique */

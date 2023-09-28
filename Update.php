@@ -86,7 +86,7 @@ require_once('header.php');
                 <td><?php echo $user['email']; ?></td>
                 <td><?php echo $user['phoneNumber']; ?></td>
                 <td><?php echo $service['name']; ?></td>
-                <td><?php echo $appointment['date']; ?></td>
+                <td><?php echo date('d-m-Y', strtotime($appointment['date'])); ?></td>
                 <td><?php echo date('H:i', strtotime($appointment['time'])); ?></td>
             </tr>
 
@@ -121,7 +121,17 @@ require_once('header.php');
                     <form method="POST" action="Action.php">
                         <input type="hidden" name="action" value="update">
                         <div class="form-group">
-                            <label>Email address</label>
+                            <label>Voornaam</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['firstName'] ?>" placeholder="E-mail">
+                            <p id="foutmelding" style="color: red;"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Achternaam</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['lastName'] ?>" placeholder="E-mail">
+                            <p id="foutmelding" style="color: red;"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
