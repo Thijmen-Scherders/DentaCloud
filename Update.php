@@ -121,6 +121,7 @@ require_once('header.php');
                     <form method="POST" action="Action.php">
                         <input type="hidden" name="action" value="update">
                         <div class="form-group">
+                            <label>Emailadres</label>
                             <label>Voornaam</label>
                             <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $user['firstName'] ?>" placeholder="Voornaam">
                             <p id="foutmelding" style="color: red;"></p>
