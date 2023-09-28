@@ -5,7 +5,8 @@
 
     <?php
     require_once('header.php');
-    $logQuery = "SELECT * FROM logs";
+    $logQuery = "SELECT * FROM logs
+    ORDER BY date DESC";
 
     $statement = $conn->prepare($logQuery);
     $statement->execute();
@@ -25,11 +26,6 @@
                     </div>
                 </div>
                 <table>
-                    <thead>
-                        <tr>
-                            <td>Logs</td>
-                        </tr>
-                    </thead>
                     <tbody>
                         <?php foreach ($logs as $log) : ?>
                             <tr>
