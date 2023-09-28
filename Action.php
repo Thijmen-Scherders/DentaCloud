@@ -9,13 +9,15 @@ include 'LoggingFunction.php';
 $action = $_POST['action'];
 
 if ($action == "update") {
-    // Define an array to store validation errors
+    // Array wordt aangemaakt waar eventuele errors in komen
     $errors = array();
 
     $firstName = htmlspecialchars($_POST["firstName"]);
+    // variabelen worden uit de form gehaald die is verstuurd. Ze worden gevalideerd op leegte en of het de juiste waarde heeft.
     if (empty($firstName) || !ctype_alpha($firstName)) {
         $errors[] = "Invalid first name";
     }
+
 
     $lastName = htmlspecialchars($_POST["lastName"]);
     if (empty($lastName) || !ctype_alpha($lastName)) {
@@ -90,9 +92,9 @@ if ($action == "update") {
         header('Location: index.php');
     } else {
         // Construct the error message string with the appointmentId and generic error message
-
+            print_r($errors);
         // Redirect to "update.php" with the error message and appointmentId
-        header('Location: update.php?id=' . $appointmentId . '&errors=true');
+       header('Location: update.php?id=' . $appointmentId . '&errors=true');
         // Exit the script to ensure the redirect takes effect
         exit;
     }

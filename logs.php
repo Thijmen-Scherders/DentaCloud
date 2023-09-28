@@ -2,7 +2,6 @@
 <html lang="en">
 
 <body>
-
     <?php
     require_once('header.php');
     $logQuery = "SELECT * FROM logs
@@ -43,7 +42,6 @@
                                     } else {
                                         $logMessage = "Op $formattedTimestamp is er een verwijdering (delete) uitgevoerd via IP-adres {$log['ipAddress']}." . PHP_EOL;
                                     }
-                                    
                                     echo $logMessage; 
                                     ?>
                                 </td>
