@@ -28,7 +28,7 @@ logging("het afsprakenformulier bezocht", $userId);
 
   <div class="container">
     <h1>Maak een afspraak</h1>
-    
+
     <?php if (!empty($errorMessage)) : ?>
       <div class="error-message" style="color: red; margin-bottom: 10px;">
         <?php echo $errorMessage; ?>
@@ -94,11 +94,28 @@ logging("het afsprakenformulier bezocht", $userId);
       </div>
 
       <div class="form-group">
-        <label>Tijd</label>
-        <input type="time" class="form-control" id="tijd" name="time" placeholder="Vul hier uw tijd in" step="900">
+        <label for="tijd">Tijd</label>
+        <select class="form-control" id="tijd" name="time">
+          <?php
+          $startTime = strtotime('8:00');
+          $endTime = strtotime('17:00');
+          $interval = 15 * 60;
+          $currentTime = time(); // Get the current time
+
+          // Calculate the next available time that is 30 minutes from now
+          $nextAvailableTime = ceil(($currentTime + 30 * 60) / $interval) * $interval;
+
+          for ($time = $startTime; $time <= $endTime; $time += $interval) {
+            if ($time >= $nextAvailableTime) {
+              $roundedTime = ceil($time / $interval) * $interval;
+              $formattedTime = date('H:i', $roundedTime);
+              echo "<option value=\"$formattedTime\">$formattedTime</option>";
+            }
+          }
+          ?>
+        </select>
 
       </div>
-
       <input type="hidden" name="action" value="create">
       <button type="submit" name="create" class="btn btn-primary"><b>verzenden</b></button>
     </form>

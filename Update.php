@@ -153,7 +153,7 @@ require_once('header.php');
                                     if ($serviceId != $service['Id']) {
                                 ?> <option value="<?php echo $service['Id']; ?>"><?php echo $service['name']; ?></option> <?php
                                                                                                                         } ?>
-                        
+
                                 <?php
                                 }
                                 ?>
@@ -165,18 +165,33 @@ require_once('header.php');
                         </div>
 
                         <div class="form-group">
-                            <label>Tijd</label>
-                            <?php
-                            $formattedTime = date('H:i', strtotime($appointment['time']));
-                            ?>
-                            <input type="text" class="form-control" name="time" id="tijd" value="<?php echo $formattedTime; ?>" placeholder="Vul hier uw tijd in">
-                            <p id="foutmelding" style="color: red;"></p>
-                        </div>
+                            <label for="tijd">Tijd</label>
+                            <select name="time" id="tijd" class="form-control">
+                                <?php
+                                $startTime = strtotime('8:00');
+                                $endTime = strtotime('17:00');
+                                $interval = 15 * 60;
+                                $currentTime = time(); // Get the current time
+                                $nextAvailableTime = ceil(($currentTime + 30 * 60) / $interval) * $interval;
+                                $selectedTime = isset($appointment['time']) ? date('H:i', strtotime($appointment['time'])) : '';
 
+                                for ($time = $startTime; $time <= $endTime; $time += $interval) {
+                                    $formattedTimeOption = date('H:i', $time);
+
+                                    if ($time < $currentTime) {
+                                        continue;
+                                    }
+                                    
+                                    $selected = ($formattedTimeOption === $selectedTime) ? 'selected' : '';
+                                    echo "<option value=\"$formattedTimeOption\" $selected>$formattedTimeOption</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <input type="hidden" name="userId" value="<?php echo $user['Id']; ?>">
                         <input type="hidden" name="appointmentId" value="<?php echo $appointment['Id']; ?>">
                         <button type="submit" class="btn btn-primary">Opslaan</button>
-                        <a class="btn btn-danger" href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>      
+                        <a class="btn btn-danger" href="delete.php?id=<?= $appointment['Id'] ?>" onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?')">Verwijderen</a>
                     </form>
                 </div>
             </div>
