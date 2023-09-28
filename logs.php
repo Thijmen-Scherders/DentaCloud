@@ -39,8 +39,11 @@
                                         $logMessage = "Op $timestamp heeft klant met ID-nummer: $userId $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
                                     } elseif ($userId == NULL) {
                                         $logMessage = "Op $timestamp heeft iemand $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
+                                    } else {
+                                        $logMessage = "Op $timestamp is er een verwijdering (delete) uitgevoerd via IP-adres {$log['ipAddress']}." . PHP_EOL;
                                     }
-                                    echo $logMessage;
+                                    
+                                    echo $logMessage; 
                                     ?>
                                 </td>
                             </tr>

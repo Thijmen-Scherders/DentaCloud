@@ -24,8 +24,18 @@
         <div class="success-message">
             <?php echo $successMessage; ?>
         </div>
-    <?php endif;
+        <script>
+            // Voeg JavaScript toe om het bericht na bijvoorbeeld 5 seconden te laten verdwijnen
+            setTimeout(function() {
+                var successMessage = document.querySelector('.success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 5000); // 5000 milliseconden = 5 seconden
+        </script>
+    <?php endif; ?>
 
+    <?php
 
     logging("het updateformulier bezocht", $userId,);
 
