@@ -1,5 +1,8 @@
+
 <?php
 include 'connect.php';
+include 'LoggingFunction.php';
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
@@ -14,15 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
         $stmt->bindParam(':recordId', $recordId, PDO::PARAM_INT); // Juiste variabele gebruiken
         $stmt->execute();
 
-     
-
         // Je kunt hier een succesmelding tonen of de gebruiker doorverwijzen naar een andere pagina
         echo "Record $recordId is succesvol verwijderd.";
     } catch (PDOException $e) {
         die("Connection failed: " . $e->getMessage());
     }
 
-
+    if (isset($_SESSION['userId'])) {
+        $userId = $_SESSION['userId'];
+      } else {
+        $userId = NULL;
+      }
+      
+    logging("een afspraak is verwijderd", $userId);
     header("Location: index.php");
 }
 ?>
