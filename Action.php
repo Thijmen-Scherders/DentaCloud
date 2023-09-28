@@ -21,7 +21,7 @@ if ($action == "update") {
     if (empty($lastName) || !ctype_alpha($lastName)) {
         $errors[] = "Invalid last name";
     }
-    
+
     // Validate email format and check if it's empty
     $email = $_POST["email"];
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -168,6 +168,7 @@ if (isset($_POST['create'])) {
         logging("een afspraak aangemaakt", $userId);
 
 
+
         // Dit potentieel nog veranderen naar support@bsolutions.nl
 
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
@@ -182,11 +183,29 @@ if (isset($_POST['create'])) {
         $mail->SMTPDebug = 2;
 
         $mail->setFrom('123@email.nl', 'Test_BSolutions');
-        $mail->addAddress('mark@bsolutions.nl', 'Company Name'); // Replace with the company's email address
-        $mail->Subject = 'Nieuwe afspraakbevestiging.'; // Change the subject as needed
+        $mail->addAddress('mark@bsolutions.nl', 'Company Name');
+        $mail->Subject = 'Nieuwe afspraakbevestiging.';
 
-        // Compose the email body with appointment details
-        $mail->Body = 'Een nieuw afspraak is gemaakt door ' . $firstname . ' ' . $lastname . ' voor ' . $serviceId . ' op ' . $date . ' om ' . $time . '.';
+        $queryServices = "SELECT services.name
+        FROM services
+        INNER JOIN appointments ON services.id = appointments.serviceId
+        WHERE appointments.serviceId = :serviceId";
+        $statement = $conn->prepare($queryServices);
+        $statement->bindParam(':serviceId', $serviceId, PDO::PARAM_INT);
+        $statement->execute();
+        $service = $statement->fetch(PDO::FETCH_ASSOC);
+        $serviceName = $service['name'];
+
+        $query = "SELECT appointments.*, users.firstName, users.lastName, users.phoneNumber, users.email, services.name 
+        FROM appointments
+        INNER JOIN users ON appointments.userId = users.Id
+        INNER JOIN services ON appointments.serviceId = services.Id";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+        $mail->Body = 'Een nieuwe afspraak is gemaakt door ' . $firstname . ' ' . $lastname . ' voor ' . $serviceName . ' op ' . $date . ' om ' . $time . '.';
 
         try {
             $mail->send();
@@ -207,6 +226,3 @@ if (isset($_POST['create'])) {
         exit;
     }
 }
-
-
-
