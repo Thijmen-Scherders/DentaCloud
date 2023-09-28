@@ -49,7 +49,7 @@ logging("het afsprakenformulier bezocht", $userId);
       </div>
 
       <div class="form-group">
-        <label>Email address</label>
+        <label>Emailadres</label>
         <input type="email" class="form-control" name="email" id="email" placeholder="Vul hier uw email in">
 
       </div>
