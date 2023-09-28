@@ -122,16 +122,16 @@ require_once('header.php');
                         <input type="hidden" name="action" value="update">
                         <div class="form-group">
                             <label>Voornaam</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['firstName'] ?>" placeholder="E-mail">
+                            <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $user['firstName'] ?>" placeholder="Voornaam">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
                         <div class="form-group">
                             <label>Achternaam</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['lastName'] ?>" placeholder="E-mail">
+                            <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $user['lastName'] ?>" placeholder="Achternaam">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
+                            <label>E-mail</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email'] ?>" placeholder="E-mail">
                             <p id="foutmelding" style="color: red;"></p>
                         </div>

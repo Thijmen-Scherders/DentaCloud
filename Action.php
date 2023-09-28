@@ -12,6 +12,16 @@ if ($action == "update") {
     // Define an array to store validation errors
     $errors = array();
 
+    $firstName = htmlspecialchars($_POST["firstName"]);
+    if (empty($firstName) || !ctype_alpha($firstName)) {
+        $errors[] = "Invalid first name";
+    }
+
+    $lastName = htmlspecialchars($_POST["lastName"]);
+    if (empty($lastName) || !ctype_alpha($lastName)) {
+        $errors[] = "Invalid last name";
+    }
+    
     // Validate email format and check if it's empty
     $email = $_POST["email"];
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -49,10 +59,12 @@ if ($action == "update") {
     // If there are no validation errors, proceed with the updates
     if (empty($errors)) {
         $userQuery = "UPDATE users 
-        SET email = :email, phoneNumber = :phoneNumber
+        SET email = :email, phoneNumber = :phoneNumber, firstName = :firstName, lastName = :lastName
         WHERE Id = :userId";
         $userStatement = $conn->prepare($userQuery);
         $userStatement->execute([
+            ":firstName" => $firstName,
+            ":lastName" => $lastName,
             ":email" => $email,
             ":phoneNumber" => $phoneNumber,
             ":userId" => $userId
