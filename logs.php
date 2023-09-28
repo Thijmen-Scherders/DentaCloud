@@ -32,15 +32,16 @@
                                 <td>
                                     <?php
                                     $timestamp = $log['date'];
+                                    $formattedTimestamp = date('d-m-Y H:i', strtotime($timestamp));
                                     $userId = $log['userId'];
                                     $message = $log['message'];
 
                                     if ($userId != NULL) {
-                                        $logMessage = "Op $timestamp heeft klant met ID-nummer: $userId $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
+                                        $logMessage = "Op $formattedTimestamp heeft klant met ID-nummer: $userId $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
                                     } elseif ($userId == NULL) {
-                                        $logMessage = "Op $timestamp heeft iemand $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
+                                        $logMessage = "Op $formattedTimestamp heeft iemand $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
                                     } else {
-                                        $logMessage = "Op $timestamp is er een verwijdering (delete) uitgevoerd via IP-adres {$log['ipAddress']}." . PHP_EOL;
+                                        $logMessage = "Op $formattedTimestamp is er een verwijdering (delete) uitgevoerd via IP-adres {$log['ipAddress']}." . PHP_EOL;
                                     }
                                     
                                     echo $logMessage; 
