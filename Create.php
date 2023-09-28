@@ -27,6 +27,8 @@ logging("het afsprakenformulier bezocht", $userId);
 <body>
 
   <div class="container">
+    <h1>Maak een afspraak</h1>
+    
     <?php if (!empty($errorMessage)) : ?>
       <div class="error-message" style="color: red; margin-bottom: 10px;">
         <?php echo $errorMessage; ?>

@@ -39,6 +39,7 @@
     ?>
 
     <div class="container-lg">
+        <h1>Afspraken</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -61,8 +62,8 @@
                             <td><?php echo $appointment['phoneNumber'] ?></td>
                             <td><?php echo $appointment['email'] ?></td>
                             <td><?php echo $appointment['name'] ?></td>
-                            <td><?php echo $appointment['date'] ?></td>
-                            <td><?php echo $appointment['time'] ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($appointment['date'])); ?></td>
+                            <td><?php echo date('H:i', strtotime($appointment['time'])); ?></td>
                             <td class="actions">
                                 <a class="btn btn-primary" href="update.php?id=<?= $appointment['Id'] ?>">Bewerken</a>
                                 <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteModal<?= $appointment['Id'] ?>">Verwijderen</a>

@@ -6,20 +6,19 @@
     <?php
     require_once('header.php');
     $logQuery = "SELECT * FROM logs";
-    
+
     $statement = $conn->prepare($logQuery);
     $statement->execute();
     $logs = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <div class="container-lg">
+        <h1>Logs</h1>
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-8">
-                            <h2>Logs <b></b></h2>
-                        </div>
+
                         <div class="col-sm-4">
 
                         </div>
@@ -37,17 +36,14 @@
                                 <td>
                                     <?php
                                     $timestamp = $log['date'];
-                                    $userId = $log['userId']; 
+                                    $userId = $log['userId'];
                                     $message = $log['message'];
 
-                                    if ($userId != NULL)
-                                    {
+                                    if ($userId != NULL) {
                                         $logMessage = "Op $timestamp heeft klant met ID-nummer: $userId $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
-                                    }
-                                    elseif ($userId == NULL)
-                                    {
+                                    } elseif ($userId == NULL) {
                                         $logMessage = "Op $timestamp heeft iemand $message via IP-adres {$log['ipAddress']}." . PHP_EOL;
-                                    }                                  
+                                    }
                                     echo $logMessage;
                                     ?>
                                 </td>
