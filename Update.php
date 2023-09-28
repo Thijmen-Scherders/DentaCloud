@@ -10,7 +10,6 @@ if (isset($_SESSION['userId'])) {
 }
 
 
-
 logging("het updateformulier bezocht", $userId);
 
 $appointmentId = $_GET["id"];

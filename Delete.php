@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
         $userId = NULL;
       }
       
-    logging("een afspraak is verwijderd", $userId);
+    logging("een afspraak verwijderd", $userId);
     header("Location: index.php");
 }
 ?>
