@@ -174,7 +174,6 @@ require_once('header.php');
                             <p id="foutmelding" style="color: red;"></p>
                         </div>
 
-
                         <input type="hidden" name="userId" value="<?php echo $user['Id']; ?>">
                         <input type="hidden" name="appointmentId" value="<?php echo $appointment['Id']; ?>">
                         <button type="submit" class="btn btn-primary">Opslaan</button>

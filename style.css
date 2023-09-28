@@ -204,13 +204,17 @@ h1
     justify-content: center; 
     align-items: center; 
     width: 300px;
+    justify-content: space-between;
 }
 
+.logo_cloud
+{
+    max-width: 35%; 
+}
 
-.logo-img img {
-    max-width: 40%; 
-    height: auto;
-    margin: 10px; 
+.logo_text
+{
+    max-width: 60%; 
 }
 
 .success-message {
