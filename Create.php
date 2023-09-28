@@ -100,7 +100,7 @@ logging("het afsprakenformulier bezocht", $userId);
       </div>
 
       <input type="hidden" name="action" value="create">
-      <button type="submit" name="create" class="btn btn-primary"><b>Submit</b></button>
+      <button type="submit" name="create" class="btn btn-primary"><b>verzenden</b></button>
     </form>
 
 

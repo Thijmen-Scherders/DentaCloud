@@ -30,7 +30,7 @@
             <ul class="header-menu">
                 <li><a href="index.php"><b>Afspraken</b></a></li>
                 <li><a href="create.php"><b>Maak een afspraak</b></a></li>
-                <li><a href="logs.php"><b>Logs</b></a></li>
+                <li><a href="logs.php"><b>Logboek</b></a></li>
             </ul>
         </div>
     </div>
